@@ -78,10 +78,10 @@ void Pj::rewrite()
 
             if (cl == 0 && key == count - 1)
             {
- 		std::cout << "no number" << std::endl;
+                std::cout << "no number" << std::endl;
                 rewrite();
-	    }
-	}
+	        }
+	     }
      }
      else if (ch == 's')
      {
@@ -104,8 +104,9 @@ void Pj::rewrite()
              if (cl == 0 && key == count - 1)
              {
                  std::cout << "no name." << std::endl;
- 		 std::cout << "coincidences: " << std::endl;
- 		 coincidences();
+ 		         std::cout << "coincidences: ";
+                 coincidences();
+                 std::cout << std::endl;
                  rewrite();
              }
          }
@@ -132,22 +133,24 @@ void Pj::coincidences()
 {
     for (int key = 0; key < count; key++)
     {
-    	t = name[key];
+        t = name[key];
 
-        for (int i = 0; i < t.size(); i++)
+        ch_b_char();
+    }
+}
+
+void Pj::ch_b_char()
+{
+    for (int key = 0; key < temps.size(); key++)
+    {
+        if (temps[key] == t[key])
         {
-            if (temps[i] == t[i])
-            {
-                ++ccs;
+            ccs += 1;
 
-                if (ccs >= 2)
-                {
-                    std::cout << t << std::endl;
-                    break;
-                }
+            if (ccs >= 2)
+            {
+                std::cout << t << ", ";
             }
         }
-
-	ccs = 0;
     }
 }
