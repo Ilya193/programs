@@ -1,5 +1,4 @@
 #include "z.h"
-//#include <string>
 
 void Pj::general_fun()
 {
