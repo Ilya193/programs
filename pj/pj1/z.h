@@ -1,5 +1,4 @@
-//#include <string>
-class Pj
+class Pj1
 {
 private:
     std::string name[200], new_name, temps, t;
