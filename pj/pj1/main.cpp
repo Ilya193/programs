@@ -6,4 +6,6 @@ int main()
     Pj t;
 
     t.fill();
+    
+    return 0;
 }
