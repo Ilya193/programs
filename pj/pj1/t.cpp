@@ -78,10 +78,10 @@ void Pj::rewrite()
 
             if (cl == 0 && key == count - 1)
             {
-                std::cout << "no number" << std::endl;
+ 		std::cout << "no number" << std::endl;
                 rewrite();
-	        }
-	     }
+	    }
+	}
      }
      else if (ch == 's')
      {
@@ -104,8 +104,8 @@ void Pj::rewrite()
              if (cl == 0 && key == count - 1)
              {
                  std::cout << "no name." << std::endl;
- 		         std::cout << "coincidences: " << std::endl;
- 		         coincidences();
+ 		 std::cout << "coincidences: " << std::endl;
+ 		 coincidences();
                  rewrite();
              }
          }
