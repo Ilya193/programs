@@ -3,7 +3,7 @@
 
 int main()
 {
-    Str s;
+    Str s = Str(0, 0, 0, 0, 0, 0);
 
     char temp[30];
     std::cin.getline(temp, 30);
