@@ -1,8 +1,8 @@
-class Pj1
+class Pj
 {
 private:
     std::string name[200], new_name, temps, t;
-    int numbers[200], count = 0, tempn, new_number, cl = 0, ccs = 0;
+    int numbers[200], count = 0, tempn, new_number, cl = 0, ccs = 0, c = 0;
     char ch;
 
 public:
@@ -11,4 +11,6 @@ public:
     void rewrite();
     void general_fun();
     void coincidences();
+    bool ch_b_char();
+    void clear();
 };
