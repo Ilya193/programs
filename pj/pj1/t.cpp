@@ -2,7 +2,7 @@
 
 void Pj::general_fun()
 {
-    std::cout << "d - display\ni - input\nr - rewrite\ne - exit" << std::endl;
+    std::cout << "d - display\ni - input\nr - rewrite\nc - clear\ne - exit" << std::endl;
     std::cin >> ch;
 
     if (ch == 'd')
@@ -20,6 +20,10 @@ void Pj::general_fun()
     else if (ch == 'e')
     {
 	    exit(0);
+    }
+    else if (ch == 'c')
+    {
+        clear();
     }
     else
     {
@@ -145,6 +149,32 @@ void Pj::display()
     }
 
     general_fun();
+}
+
+void Pj::clear()
+{
+    std::cout << "enter a name: ";
+    std::cin.get();
+    getline(std::cin, t);
+
+    for (int key = 0; key < count; key++)
+    {
+        if (t == name[key])
+        {
+            for (int x = key; x < count; x++)
+            {
+                numbers[x] = numbers[x + 1];
+                name[x] = name[x + 1];
+            }
+
+            count--;
+            general_fun();
+        }
+        else if (t == name[key] && key + 1 == count)
+        {
+            count--;
+        }
+    }
 }
 
 void Pj::coincidences()
