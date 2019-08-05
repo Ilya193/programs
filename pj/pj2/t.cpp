@@ -1,5 +1,10 @@
 #include "z.h"
 
+Str::Str(int v1, int v2, int v3, int v4, int v5, int v6)
+{
+    gap = v1, num_ch = v2, ch = v3, var_arr = v4, num = v5, gaps = v6;
+}
+
 int Str::strlen(char* string)
 {
     int res = 0;
