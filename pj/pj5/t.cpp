@@ -33,5 +33,5 @@ std::ostream& operator<<(std::ostream& os, const Lesson& l)
 
     temp++;
 
-	return os;
+    return os;
 }
