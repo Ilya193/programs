@@ -1,19 +1,14 @@
-struct file
-{
-	
-};
-
 class Lesson
 {
 private:
-	std::string* str_file;
-	int key = 0;
+    std::string* str_file;
+    int key = 0;
 
 public:
-	Lesson();
-	Lesson(int);
-	~Lesson();
+    Lesson();
+    Lesson(int);
+    ~Lesson();
 
-	void operator<<(const std::string&);
-	friend std::ostream& operator<<(std::ostream&, const Lesson&);
+    void operator<<(const std::string&);
+    friend std::ostream& operator<<(std::ostream&, const Lesson&);
 };
