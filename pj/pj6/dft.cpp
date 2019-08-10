@@ -5,10 +5,10 @@
 C_file::C_file()
 {
     count = 0;
-	key_nm = 0;
-	key_nr = 0;
-	ct = 0;
-	var = 0;
+    key_nm = 0;
+    key_nr = 0;
+    ct = 0;
+    var = 0;
 }
 
 void C_file::read()
@@ -40,15 +40,15 @@ void C_file::read()
                 
                 write();
             }
-			else
-			{
-				//TODO
-			}
+	    else
+	    {
+	 	//TODO
+	     }
         }
-		else
-		{
-			//TODO
-		}
+	else
+	{
+	    //TODO
+	}
     }
 
     file_i.close();
@@ -56,7 +56,7 @@ void C_file::read()
 
 void C_file::write()
 {
-	count = 0;
+    count = 0;
 
     file_o.open("g");
     if (!file_o.is_open())
@@ -71,48 +71,48 @@ void C_file::write()
 
     while (content != ".")
     {
-		count++;
+	count++;
         file_o << content << std::endl;
         getline(std::cin, content);
-		if (count % 2 == 0)
-		{
-			var++;
-		}
-		//TODO if
+	if (count % 2 == 0)
+	{
+	    var++;
+	}
+	//TODO if
     }
 
-	name = new std::string[count - var];
-	number = new std::string[count - var];
+    name = new std::string[count - var];
+    number = new std::string[count - var];
 
-	file_o.close();
+    file_o.close();
 
-	fill();
+    fill();
 }
 
 void C_file::fill()
 {
-	ct = 1;
+    ct = 1;
 	
-	file_i.open("g");
-	if (!file_i.is_open())
-	{
-		std::cout << "no" << std::endl;
-		exit(0);
-	}
+    file_i.open("g");
+    if (!file_i.is_open())
+    {
+	std::cout << "no" << std::endl;
+	exit(0);
+    }
 
-	while (file_i >> content)
+    while (file_i >> content)
+    {
+	if (ct % 2 == 0)
 	{
-		if (ct % 2 == 0)
-		{
-			number[key_nr] = content;
-			key_nr++;
-			ct++;
-		}
-		else
-		{
-			name[key_nm] = content;
-			key_nm++;
-			ct++;
-		}
+	    number[key_nr] = content;
+	    key_nr++;
+	    ct++;
 	}
+	else
+	{
+	    name[key_nm] = content;
+	    key_nm++;
+	    ct++;
+	}
+    }
 }
