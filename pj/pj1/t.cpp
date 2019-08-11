@@ -1,5 +1,33 @@
 #include "z.h"
 
+Pj::Pj()
+{
+    count = 0;
+    cl = 0;
+    ccs = 0;
+    c = 0;
+
+    name = new std::string[200];
+    numbers = new int[200];
+}
+
+Pj::~Pj()
+{
+    delete [] name;
+    delete [] numbers;
+}
+
+std::ostream& operator<<(std::ostream& os, const Pj& t2_)
+{
+    for (int key = 0; key < t2_.count; key++)
+    {
+	os << "number: " << t2_.numbers[key] << std::endl;
+	os << "name: " << t2_.name[key] << std::endl;
+    }
+
+    return os;
+}
+
 void Pj::general_fun()
 {
     std::cout << "d - display\ni - input\nr - rewrite\nc - clear\ne - exit" << std::endl;
@@ -142,11 +170,9 @@ void Pj::rewrite()
 
 void Pj::display()
 {
-    for (int key = 0; key < count; key++)
-    {
-        std::cout << "number: " << numbers[key] << std::endl;
-	    std::cout << "name: " << name[key] << std::endl;
-    }
+    Pj t2 = *this;
+	
+    std::cout << t2;
 
     general_fun();
 }
