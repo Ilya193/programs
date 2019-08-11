@@ -1,11 +1,16 @@
 class Pj
 {
 private:
-    std::string name[200], new_name, temps, t;
-    int numbers[200], count = 0, tempn, new_number, cl = 0, ccs = 0, c = 0;
+    std::string* name, new_name, temps, t;
+    int* numbers, count, tempn, new_number, cl, ccs, c;
     char ch;
 
 public:
+	Pj();
+	~Pj();
+
+	friend std::ostream& operator<<(std::ostream&, const Pj&);
+
     void fill();
     void display();
     void rewrite();
