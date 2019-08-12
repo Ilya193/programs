@@ -7,6 +7,7 @@ private:
 
 public:
     Pj();
+    Pj(const Pj&);
     ~Pj();
 
     friend std::ostream& operator<<(std::ostream&, const Pj&);
