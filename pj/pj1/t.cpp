@@ -2,30 +2,46 @@
 
 Pj::Pj()
 {
-    count = 0;
-    cl = 0;
-    ccs = 0;
-    c = 0;
+	count = 0;
+	cl = 0;
+	ccs = 0;
+	c = 0;
 
+	name = new std::string[200];
+	numbers = new int[200];
+}
+
+Pj::Pj(const Pj& t)
+{
     name = new std::string[200];
     numbers = new int[200];
+    count = t.count;
+    cl = t.cl;
+    ccs = t.ccs;
+    c = t.c;
+
+    for (int key = 0; key < t.count; key++)
+    {
+        name[key] = t.name[key];
+        numbers[key] = t.numbers[key];
+    }
 }
 
 Pj::~Pj()
 {
-    delete [] name;
-    delete [] numbers;
+	delete [] name;
+	delete [] numbers;
 }
 
 std::ostream& operator<<(std::ostream& os, const Pj& t2_)
 {
-    for (int key = 0; key < t2_.count; key++)
-    {
-	os << "number: " << t2_.numbers[key] << std::endl;
-	os << "name: " << t2_.name[key] << std::endl;
-    }
+	for (int key = 0; key < t2_.count; key++)
+	{
+		os << "number: " << t2_.numbers[key] << std::endl;
+		os << "name: " << t2_.name[key] << std::endl;
+	}
 
-    return os;
+	return os;
 }
 
 void Pj::general_fun()
@@ -170,9 +186,9 @@ void Pj::rewrite()
 
 void Pj::display()
 {
-    Pj t2 = *this;
+	Pj t2 = Pj(*this);
 	
-    std::cout << t2;
+	std::cout << t2;
 
     general_fun();
 }
