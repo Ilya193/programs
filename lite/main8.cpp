@@ -16,7 +16,7 @@ int main()
 
 int strlen(char* string)
 {
-    int length = 0, ch;
+    int length = 0, ch = 0;
 
     while (string[length] != '\0')
     {
