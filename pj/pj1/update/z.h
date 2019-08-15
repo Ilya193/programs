@@ -2,7 +2,7 @@ class Pj
 {
 private:
     std::string* name, new_name, temps, t;
-    int* numbers, count, tempn, new_number, cl, ccs, c, count_f, ts, k;
+    int* numbers, count, tempn, new_number, cl, ccs, c, count_f, ts;
 
     std::string test_test;
 
@@ -13,11 +13,11 @@ private:
     std::string content;
 
 public:
-	Pj();
+    Pj();
     Pj(const Pj&);
-	~Pj();
+    ~Pj();
 
-	friend std::ostream& operator<<(std::ostream&, const Pj&);
+    friend std::ostream& operator<<(std::ostream&, const Pj&);
 
     void fill();
     void display();
@@ -30,5 +30,4 @@ public:
     void file_read();
     void file_write();
     void file_fill();
-    void test();
 };
