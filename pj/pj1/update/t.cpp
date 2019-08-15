@@ -309,9 +309,6 @@ void Pj::file_read()
             else
             {
                 file_i.close();
-
-                k = 1;
-                
                 general_fun();
             }
         }
