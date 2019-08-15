@@ -6,11 +6,11 @@ private:
     char ch;
 
 public:
-    Pj();
+	Pj();
     Pj(const Pj&);
-    ~Pj();
+	~Pj();
 
-    friend std::ostream& operator<<(std::ostream&, const Pj&);
+	friend std::ostream& operator<<(std::ostream&, const Pj&);
 
     void fill();
     void display();

@@ -2,7 +2,9 @@ class Pj
 {
 private:
     std::string* name, new_name, temps, t;
-    int* numbers, count, tempn, new_number, cl, ccs, c, count_f, ts;
+    int* numbers, count, tempn, new_number, cl, ccs, c, count_f, ts, k;
+
+    std::string test_test;
 
     char ch;
 
@@ -28,4 +30,5 @@ public:
     void file_read();
     void file_write();
     void file_fill();
+    void test();
 };

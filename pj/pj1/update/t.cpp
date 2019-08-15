@@ -50,6 +50,7 @@ void Pj::general_fun()
 {
     std::cout << "d - display\ni - input\nr - rewrite\nc - clear\ne - exit" << std::endl;
     std::cin >> ch;
+    std::cin.get();
 
     if (ch == 'd')
     {
@@ -80,27 +81,34 @@ void Pj::general_fun()
 
 void Pj::fill()
 {
-    std::cout << "number: ";
-    if (!(std::cin >> tempn))
+    file_o.open("contacts", std::ios::app);
+
+    if (!file_o.is_open())
     {
-        std::cout << "not a number" << std::endl;
-        exit(0);
-    }
-    std::cin.get();
-    numbers[count] = tempn;
+        std::cout << "file is not open" << std::endl;
 
-    std::cout << "name: ";
-    getline(std::cin, temps);
-    if (temps[0] == '1' || temps[0] == '2' || temps[0] == '3' || temps[0] == '4' || temps[0] == '5' ||
-    temps[0] == '6' || temps[0] == '7' || temps[0] == '8' || temps[0] == '9')
+        file_o.close();
+
+        exit(0);       
+    }
+
+    std::cout << "name -> number" << std::endl;
+
+    while (content != ".")
     {
-        std::cout << "string!" << std::endl;
-        Pj::fill();
+        getline(std::cin, content);
+        file_o << content << std::endl;
+
+        getline(std::cin, content);
+        file_o << content << std::endl;
+
+        std::cout << "choise: " << std::endl;
+        getline(std::cin, content);
     }
-    name[count] = temps;
 
-    count++;
+    file_o.close();
 
+    file_fill();
     general_fun();
 }
 
@@ -188,8 +196,6 @@ void Pj::rewrite()
 
 void Pj::display()
 {
-    //file_read();
-
 	Pj t2 = Pj(*this);
 	
 	std::cout << t2;
@@ -296,19 +302,24 @@ void Pj::file_read()
 
             if (tolower(ch) == 'y')
             {
-                //TODO FILL ARR AND FILE
-                //file_i.close()
+                file_i.close();
+                fill();
+
             }
             else
             {
                 file_i.close();
-                exit(0);
+
+                k = 1;
+                
+                general_fun();
             }
         }
         else
         {
             file_i.close();
             file_fill();
+            general_fun();
         }
     }
 }
@@ -327,24 +338,25 @@ void Pj::file_fill()
     }
 
     count_f = 1;
+    count = 0;
+    ts = 0;
     while (file_i >> content)
     {
         if (count_f % 2 == 0)
         {
             numbers[count - ts] = atoi(content.c_str());
         }
-        else
+        else if (count_f % 2 != 0)
         {
-            name[count] = content;
+            name[count - ts] = content;
             ts++;
         }
 
         count_f++;
         count++;
     }
+    
+    file_i.close();
+
+    count -= ts;
 }
-
-/*void Pj::file_write()
-{
-
-} */

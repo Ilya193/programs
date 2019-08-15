@@ -2,13 +2,13 @@
 
 Pj::Pj()
 {
-    count = 0;
-    cl = 0;
-    ccs = 0;
-    c = 0;
+	count = 0;
+	cl = 0;
+	ccs = 0;
+	c = 0;
 
-    name = new std::string[200];
-    numbers = new int[200];
+	name = new std::string[200];
+	numbers = new int[200];
 }
 
 Pj::Pj(const Pj& t)
