@@ -162,7 +162,6 @@ void Pj::rewrite()
 
         for (int key = 0; key < count; key++)
         {
-            std::cout << "temps: " << temps << std::endl;
             if (temps == name[key])
             {
                 std::cout << "enter the new name: ";
