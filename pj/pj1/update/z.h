@@ -13,11 +13,13 @@ private:
     std::string content;
 
 public:
-    Pj();
-    Pj(const Pj&);
-    ~Pj();
+    int i;
 
-    friend std::ostream& operator<<(std::ostream&, const Pj&);
+	Pj();
+    Pj(const Pj&);
+	~Pj();
+
+	friend std::ostream& operator<<(std::ostream&, const Pj&);
 
     void fill();
     void display();
@@ -30,4 +32,5 @@ public:
     void file_read();
     void file_write();
     void file_fill();
+    void spec_fun();
 };
