@@ -8,7 +8,7 @@ int main()
 
     fib(x, y, z);
 
-	return 0;
+    return 0;
 }
 
 void fib(int x, int y, int z)
