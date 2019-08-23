@@ -110,3 +110,17 @@ void cl::operator<(const cl& t2_)
     if (len1 < len2) std::cout << "true" << std::endl;
     else std::cout << "false" << std::endl;
 }
+
+void copy(char* s_arr, const char* string)
+{
+    int k;
+    
+    for (int key = 0; string[key] != '\0'; key++)
+    {
+        s_arr[key] = string[key];
+            
+        k = key;
+    }
+
+    s_arr[k + 1] = '\0';
+}
