@@ -16,5 +16,11 @@ int main()
     t1.operator>(t2);
     t1.operator<(t2);
 
+    char temp[10];
+
+    copy(temp, "hello");
+
+    std::cout << temp << std::endl;
+
     return 0;
 }
