@@ -3,7 +3,7 @@
 
 int main()
 {
-    gameplay* gm = new gameplay("ilya");
+    gameplay* gm = new gameplay("z");
 
     gm->general();
 
