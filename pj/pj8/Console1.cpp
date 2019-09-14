@@ -3,7 +3,7 @@
 
 int main()
 {
-	A<int, 5> v;
+    A<int, 5> v;
 
-	return 0;
+    return 0;
 }
