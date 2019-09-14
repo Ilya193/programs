@@ -20,7 +20,7 @@ A<type, val>::A()
 {
     top = val - 1;
 
-    for (int key = 0; key < top; key++)
+    for (int key = 0; key <= top; key++)
     {
         arr[key] = key;
     }
@@ -30,7 +30,7 @@ template <typename type, int val>
 void A<type, val>::show() const
 {
     std::cout << "arr: " << std::endl;
-    for (int key = 0; key < top; key++)
+    for (int key = 0; key <= top; key++)
     {
         std::cout << arr[key] << std::endl;
     }
@@ -71,7 +71,7 @@ void A<type, val>::append(int i)
     }
     else
     {
-	arr[top] = i;
 	top++;
+	arr[top] = i;
     }
 }
