@@ -16,6 +16,7 @@ public:
     void min_number();
     void max_number();
     void sum_numbers();
+    void average();
 };
 
 template <typename type, int val>
@@ -118,4 +119,21 @@ void A<type, val>::sum_numbers()
     }
 
     std::cout << "sum: " << sum << std::endl;
+}
+
+template <typename type, int val>
+void A<type, val>::average()
+{
+    sum = 0;
+
+    for (int key = 0; key <= top; key++)
+    {
+        sum += arr[key];
+    }
+
+    avg = sum / (top + 1);
+
+    std::cout << "average: " << avg << std::endl;
+
+    sum = 0;
 }
