@@ -43,6 +43,11 @@ void A<type, val>::show() const
 template <typename type, int val>
 void A<type, val>::del(int i)
 {
+    if (i > val)
+    {
+        std::cout << ">" << std::endl;
+    }
+	
     if (i == val)
     {
 	top--;
