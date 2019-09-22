@@ -15,12 +15,9 @@ int main()
 
     for (int key = 0; key < 5; key++)
     {
-        for (int key = 0; key < 5; key++)
+        if (numbers[key] > gb)
         {
-            if (numbers[key] > gb)
-            {
-                gb = numbers[key];
-            }
+            gb = numbers[key];
         }
     }
 
