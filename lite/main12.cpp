@@ -98,7 +98,3 @@ void del(int* arr, int num)
     count--;
     m--;
 }
-
-
-
-
