@@ -76,11 +76,6 @@ void del(int* arr, int num)
         arr[count - 1] = gb + gb;
         count--;
         m--;
-
-        //for (int test = 0; test < 5; test++)
-        //{
-            //std::cout << "test: " << arr[test] << std::endl;
-        //}
     }*/
 
     for (int x = 0; x <= num; x++)
