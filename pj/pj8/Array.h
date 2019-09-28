@@ -123,24 +123,25 @@ void A<type, val>::del(int i)
 
     if (i == val)
     {
-    top--;
+        top--;
     }
     else
-        {
+    {
         i--;
 
         for (int x = 0; x <= i; x++)
         {
-        if (x == i)
-        {
-            for (int y = x; y <= top; y++)
+            if (x == i)
             {
-                arr[y] = arr[y + 1];
+                for (int y = x; y <= top; y++)
+                {
+                    arr[y] = arr[y + 1];
+                }
             }
         }
     }
 
-    top--;
+        top--;
     }
 }
 
@@ -149,12 +150,12 @@ void A<type, val>::append(int i)
 {
     if (top == val - 1)
     {
-    std::cout << "full" << std::endl;
+        std::cout << "full" << std::endl;
     }
     else
     {
-    top++;
-    arr[top] = i;
+        top++;
+        arr[top] = i;
     }
 }
 
