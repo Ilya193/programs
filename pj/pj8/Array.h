@@ -1,11 +1,10 @@
-#pragma once
-
 template <typename type, int val>
 class A
 {
 private:
     type arr[val];
     int top;
+    int min, max, sum, avg;
 
 public:
     A();
@@ -17,16 +16,32 @@ public:
     void max_number();
     void sum_numbers();
     void average();
+
+    int operator[](int);
 };
+
+template <typename type, int val>
+int A<type, val>::operator[](int n)
+{
+    return arr[n];
+}
 
 template <typename type, int val>
 A<type, val>::A()
 {
     top = val - 1;
+    min = max = sum = avg = 0;
 
-    for (int key = 0; key <= top; key++)
+    type temp;
+
+    int key = 0;
+    while (key <= top && std::cin >> temp)
     {
-        arr[key] = key;
+        if (key <= top)
+        {
+            arr[key] = temp;
+            key++;
+        }
     }
 }
 
@@ -47,28 +62,28 @@ void A<type, val>::del(int i)
     {
         std::cout << ">" << std::endl;
     }
-	
+
     if (i == val)
     {
-	top--;
+    top--;
     }
     else
         {
-	    i--;
+        i--;
 
-	    for (int x = 0; x <= i; x++)
-	    {
-		if (x == i)
-		{
-		    for (int y = x; y <= top; y++)
-		    {
-		        arr[y] = arr[y + 1];
-		    }
-		}
-	}
+        for (int x = 0; x <= i; x++)
+        {
+        if (x == i)
+        {
+            for (int y = x; y <= top; y++)
+            {
+                arr[y] = arr[y + 1];
+            }
+        }
+    }
 
-	top--;
-	}
+    top--;
+    }
 }
 
 template <typename type, int val>
@@ -76,12 +91,12 @@ void A<type, val>::append(int i)
 {
     if (top == val - 1)
     {
-	std::cout << "full" << std::endl;
+    std::cout << "full" << std::endl;
     }
     else
     {
-	top++;
-	arr[top] = i;
+    top++;
+    arr[top] = i;
     }
 }
 
