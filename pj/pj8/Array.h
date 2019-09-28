@@ -101,6 +101,24 @@ A<type, val>::A()
             key++;
         }
     }
+
+    for (int key = 0; key <= top; key++)
+    {
+        copy_arr[key] = arr[key];
+    }
+
+    gb = 0;
+    count = val;
+    j = 0;
+    m = val;
+
+    for (int key = 0; key < val; key++)
+    {
+        if (arr[key] > gb)
+        {
+            gb = arr[key];
+        }
+    }
 }
 
 template <typename type, int val>
