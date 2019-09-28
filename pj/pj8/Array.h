@@ -3,8 +3,14 @@ class A
 {
 private:
     type arr[val];
+    type copy_arr[val];
     int top;
     int min, max, sum, avg;
+
+    int gb;
+    int count;
+    int j;
+    int m;
 
 public:
     A();
@@ -16,9 +22,61 @@ public:
     void max_number();
     void sum_numbers();
     void average();
+    
+    void sort();
+    void un_sort();
+    void irv(int);
 
     int operator[](int);
 };
+
+template <typename type, int val>
+void A<type, val>::sort()
+{
+    for (int key = 0; key <= top; key++)
+    {
+        un_sort();
+    }
+}
+
+template <typename type, int val>
+void A<type, val>::un_sort()
+{
+    int num = gb + 1;
+    int c;
+
+    for (int key = 0; key < val; key++)
+    {
+        if (copy_arr[key] < num)
+        {
+            num = copy_arr[key];
+            c = key;
+        }
+    }
+
+    arr[j++] = num;
+
+    irv(c);
+}
+
+template <typename type, int val>
+void A<type, val>::irv(int n)
+{
+    for (int x = 0; x <= n; x++)
+    {
+        if (x == n)
+        {
+            for (int y = x; y < top; y++)
+            {
+                copy_arr[y] = copy_arr[y + 1];
+            }
+        }
+    }
+
+    copy_arr[count - 1] = gb + gb;
+    count--;
+    m--;
+}
 
 template <typename type, int val>
 int A<type, val>::operator[](int n)
