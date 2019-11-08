@@ -1,4 +1,4 @@
-#include "dft.h"
+#include <iostream>
 
 int f(int);
 
@@ -14,12 +14,11 @@ int main()
 
         if (num == 0)
         {
-            std::cout << "key: " << key << std::endl;
             count++;
         }
     }
 
-    std::cout << "count: " << count << std::endl;
+    std::cout << count << std::endl;
 
     return 0;
 }
@@ -39,6 +38,3 @@ int f(int m)
 
     return j;
 }
-
-
-
