@@ -1,9 +1,8 @@
-﻿#include <iostream>
 #include "Array.h"
 
 int main()
 {
-    A<int, 5> v;
+    v<int, 5> v1;
 
     return 0;
 }
