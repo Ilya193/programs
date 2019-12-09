@@ -187,4 +187,51 @@ public:
             arr[key] = v_.arr[key];
         }
     }
+
+    t sum()
+    {
+        t sum = 0;
+
+        for (int key = 0; key <= top; key++)
+        {
+            sum += arr[key];
+        }
+
+        return sum;
+    }
+
+    t max()
+    {
+        t max = arr[0];
+
+        for (int key = 0; key <= top; key++)
+        {
+            if (arr[key] > max)
+            {
+                max = arr[key];
+            }
+        }
+
+        return max;
+    }
+
+    t min()
+    {
+        t min = arr[0];
+
+        for (int key = 0; key <= top; key++)
+        {
+            if (arr[key] < min)
+            {
+                min = arr[key];
+            }
+        }
+
+        return min;
+    }
+
+    t average()
+    {
+        return sum() / value;
+    }
 };
