@@ -11,7 +11,7 @@ private:
     int val;
 
 public:
-    v()
+    v() // параметры
     {
         if (value == 0)
         {
