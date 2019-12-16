@@ -1,102 +1,249 @@
 #include <iostream>
 
-template<typename t, int value = 0>
-class v
+template<typename t>
+class array
 {
 private:
     t* arr;
+
     int top;
-    
-    int y;
-    int val;
+    int py;
 
 public:
-    v() // параметры
+    array(int n = 1)
     {
-        if (value == 0)
-        {
-            arr = new t[1];
-            top = 1;
-        }
-        else
-        {
-            arr = new t[value];
-            top = value - 1;
-        }
-        
-        for (int key = 0; key <= top; key++)
-        {
-            arr[key] = 0;
-        }
+      	try
+      	{
+      	    if (n == 0)
+			{
+				throw "failed to create";
+			}
+      	}
+		catch (const char* s)
+		{
+			std::cout << s << std::endl;
+			exit(0);
+		}
 
-        val = value;
-    }
-    ~v()
-    {
-        delete[] arr;
-    }
-    
-    v& operator[](int n)
-    {
-        try
-        {
-            if (n - 1 >= top)
-            {
-                delete[] arr;
-                throw "element is missing";
-            }
-        }
-        catch (const char* s)
-        {
-            std::cout << s << std::endl;
-            exit(0);
-        }
-        
-        y = n;
-        return *this;
-    }
-    
-    void operator=(t n)
-    {
-        arr[y] = n;
-        y = 0;
+        arr = new t[n];
+		top = n;
     }
 
-    void del(int n = 0)
-    {
-        if (n != 0)
-        {
-            if (n == value)
+	array(const array& array_)
+	{
+		arr = new t[array_.top];
+		top = array_.top;
+		py = array_.py;
+
+		for (int key = 0; key < top; key++)
+		{
+			arr[key] = array_.arr[key];
+		}
+	}
+
+	~array()
+	{
+		delete[] arr;
+	}
+
+	array& operator[](int n)
+	{
+		try
+		{
+			if (n > top)
+			{
+				throw "element is missing";
+			}
+		}
+		catch (const char* s)
+		{
+			std::cout << s << std::endl;
+			exit(0);
+		}
+
+		py = n;
+
+		return *this;
+	}
+
+	void operator=(t val)
+	{
+		arr[py] = val;
+		py = -1; // output
+	}
+
+	friend std::ostream& operator<<(std::ostream& os, const array& array_)
+	{
+		if (array_.py != -1)
+		{
+			os << array_.arr[array_.py];
+		}
+		else
+		{
+			for (int key = 0; key < array_.top; key++)
             {
-                arr[top--] = 0;
-            }
-            else
-            {
-                for (int x = 0; x < n; x++)
+                if (key < array_.top && key != array_.top - 1)
                 {
-                    if (x == n - 1)
-                    {
-                        for (int y = x; y <= top; y++)
-                        {
-                            arr[y] = arr[y + 1];
-                        }
-                    }
+                    std::cout << array_.arr[key] << std::endl;
                 }
-
-                arr[top--] = 0;
+                else if (key = array_.top - 1)
+                {
+                    std::cout << array_.arr[key];
+                }
             }
-        }
-        else
-        {
-            arr[top--] = 0;
-        }
-    }
+		}
+        
+        return os;
+	}
 
-    void append(int n)
-    {
-        try
+	friend std::istream& operator>>(std::istream& is, const array& array_)
+	{
+		is >> array_.arr[array_.py];
+
+		return is;
+	}
+};
+
+template <typename t>
+class array_number
+{
+private:
+	t* arr;
+	int top;
+	int py;
+
+	int value;
+
+public:
+	array_number(int n)
+	{
+		try
+      	{
+      	    if (n == 0)
+			{
+				throw "failed to create";
+			}
+      	}
+		catch (const char* s)
+		{
+			std::cout << s << std::endl;
+			exit(0);
+		}
+
+		value = n;
+        arr = new t[n];
+		top = n;
+	}
+
+	array_number(const array_number& array_num_)
+	{
+		arr = new t[array_num_.top];
+		top = array_num_.top;
+		py = array_num_.py;
+
+		for (int key = 0; key < top; key++)
+		{
+			arr[key] = array_num_.arr[key];
+		}
+	}
+
+	~array_number()
+	{
+		delete[] arr;
+	}
+
+	array_number& operator[](int n)
+	{
+		try
+		{
+			if (n > top)
+			{
+				throw "element is missing";
+			}
+		}
+		catch (const char* s)
+		{
+			std::cout << s << std::endl;
+			exit(0);
+		}
+
+		py = n;
+
+		return *this;
+	}
+
+	void operator=(t val)
+	{
+		arr[py] = val;
+		py = -1; // output
+	}
+
+	friend std::ostream& operator<<(std::ostream& os, const array_number& array_num_)
+	{
+		if (array_num_.py != -1)
+		{
+			os << array_num_.arr[array_num_.py];
+		}
+		else
+		{
+			for (int key = 0; key < array_num_.top; key++)
+            {
+                if (key < array_num_.top && key != array_num_.top - 1)
+                {
+                    std::cout << array_num_.arr[key] << std::endl;
+                }
+                else if (key = array_num_.top - 1)
+                {
+                    std::cout << array_num_.arr[key];
+                }
+            }
+		}
+        
+        return os;
+	}
+
+	friend std::istream& operator>>(std::istream& is, const array_number& array_num_)
+	{
+		is >> array_num_.arr[array_num_.py];
+
+		return is;
+	}
+
+	void del(int n = -1) // -1 flag
+	{
+		if (n == -1)
+		{
+			arr[top--] = 0;
+		}
+		else if (n != -1)
+		{
+			if (n == top)
+			{
+				arr[top--] = 0;
+			}
+			else
+			{
+				for (int x = 0; x < n; x++)
+				{
+					if (x == n - 1)
+					{
+						for (int y = x; x < top; x++)
+						{
+							arr[y] = arr[y + 1];
+						}
+					}
+				}
+
+				arr[top--] = 0;
+			}
+		}
+	}
+
+	void append(int n)
+	{
+		try
         {
-            if (top == value - 1)
+            if (top == value)
             {
                 delete [] arr;
                 throw "arr is full";
@@ -108,14 +255,14 @@ public:
             exit(0);
         }
 
-        arr[++top] = n;
-    }
+		arr[++top] = n;
+	}
 
-    void sort()
-    {
-        for (int x = 0; x <= top; x++)
+	void sort()
+	{
+		for (int x = 0; x < top; x++)
         {
-            for (int y = 0; y <= top; y++)
+            for (int y = 0; y < top; y++)
             {
                 if (arr[x] < arr[y])
                 {
@@ -125,33 +272,9 @@ public:
                 }
             }
         }
-    }
-    
-    friend std::ostream& operator<<(std::ostream& os, v& v_)
-    {
-        if (v_.y == 0)
-        {
-            for (int key = 0; key <= v_.top; key++)
-            {
-                if (key < v_.top)
-                {
-                    std::cout << v_.arr[key] << std::endl;
-                }
-                else if (key = v_.top)
-                {
-                    std::cout << v_.arr[key];
-                }
-            }
-        }
-        else
-        {
-            os << v_.arr[v_.y];
-        }
-        
-        return os;
-    }
+	}
 
-    t operator+(const v& v_)
+	t operator+(const v& v_)
     {
         int sum = 0;
 
@@ -175,24 +298,11 @@ public:
         return sum;
     }
 
-    v(const v& v_)
-    {
-        arr = new t[value];
-        top = v_.top;
-        y = v_.y;
-        val = value;
-
-        for (int key = 0; key < value; key++)
-        {
-            arr[key] = v_.arr[key];
-        }
-    }
-
-    t sum()
+	t sum()
     {
         t sum = 0;
 
-        for (int key = 0; key <= top; key++)
+        for (int key = 0; key < top; key++)
         {
             sum += arr[key];
         }
@@ -204,7 +314,7 @@ public:
     {
         t max = arr[0];
 
-        for (int key = 0; key <= top; key++)
+        for (int key = 0; key < top; key++)
         {
             if (arr[key] > max)
             {
@@ -219,7 +329,7 @@ public:
     {
         t min = arr[0];
 
-        for (int key = 0; key <= top; key++)
+        for (int key = 0; key < top; key++)
         {
             if (arr[key] < min)
             {
@@ -232,6 +342,6 @@ public:
 
     t average()
     {
-        return sum() / value;
+        return sum() / top;
     }
 };
