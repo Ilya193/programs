@@ -41,6 +41,33 @@ public:
         }
     }
 
+    void operator=(const array& array_)
+    {
+        try
+        {
+            if (top > array_.top)
+            {
+                throw "error in object declaration";
+            }
+        }
+        catch (const char* str)
+        {
+            std::cout << str << std::endl;
+            exit(0);
+        }
+
+        delete[] arr;
+
+        arr = new t[array_.top];
+        top = array_.top;
+        py = array_.py;
+
+        for (int key = 0; key < top; key++)
+        {
+            arr[key] = array_.arr[key];
+        }
+    }
+
     ~array()
     {
         delete[] arr;
@@ -115,7 +142,7 @@ private:
     int value;
 
 public:
-    array_number(int n)
+    array_number(int n = 1)
     {
         try
         {
@@ -137,6 +164,33 @@ public:
 
     array_number(const array_number& array_num_)
     {
+        arr = new t[array_num_.top];
+        top = array_num_.top;
+        py = array_num_.py;
+
+        for (int key = 0; key < top; key++)
+        {
+            arr[key] = array_num_.arr[key];
+        }
+    }
+
+    void operator=(const array_number& array_num_)
+    {
+        try
+        {
+            if (top > array_num_.top)
+            {
+                throw "error in object declaration";
+            }
+        }
+        catch (const char* str)
+        {
+            std::cout << str << std::endl;
+            exit(0);
+        }
+
+        delete[] arr;
+
         arr = new t[array_num_.top];
         top = array_num_.top;
         py = array_num_.py;
@@ -274,25 +328,25 @@ public:
         }
     }
 
-    t operator+(const v& v_)
+    t operator+(const array_number& array_num_)
     {
         int sum = 0;
 
-        for (int key = 0; key < val; key++)
+        for (int key = 0; key < top; key++)
         {
-            sum += arr[key] + v_.arr[key];
+            sum += arr[key] + array_num_.arr[key];
         }
 
         return sum;
     }
     
-    t operator-(const v& v_)
+    t operator-(const array_number& array_num_)
     {
         int sum = 0;
 
-        for (int key = 0; key < val; key++)
+        for (int key = 0; key < top; key++)
         {
-            sum += arr[key] - v_.arr[key];
+            sum += arr[key] - array_num_.arr[key];
         }
 
         return sum;
@@ -345,3 +399,16 @@ public:
         return sum() / top;
     }
 };
+
+template<typename t>
+class array_string
+{
+
+};
+
+int main()
+{
+    
+
+    return 0;
+}
