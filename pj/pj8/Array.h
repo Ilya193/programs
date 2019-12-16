@@ -160,6 +160,12 @@ public:
         value = n;
         arr = new t[n];
         top = n;
+        py = -1; // flag
+
+        for (int key = 0; key < top; key++)
+        {
+            arr[key] = 0;
+        }
     }
 
     array_number(const array_number& array_num_)
@@ -265,6 +271,19 @@ public:
 
     void del(int n = -1) // -1 flag
     {
+        try
+        {
+            if (n > top)
+            {
+                throw "element is missing";
+            }
+        }
+        catch (const char* str)
+        {
+            std::cout << str << std::endl;
+            exit(0);
+        }
+
         if (n == -1)
         {
             arr[top--] = 0;
@@ -309,7 +328,7 @@ public:
             exit(0);
         }
 
-        arr[++top] = n;
+        arr[top++] = n;
     }
 
     void sort()
