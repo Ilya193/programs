@@ -405,10 +405,3 @@ class array_string
 {
 
 };
-
-int main()
-{
-    
-
-    return 0;
-}
