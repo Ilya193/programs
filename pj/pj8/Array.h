@@ -16,6 +16,7 @@ public:
         {
             if (n == 0)
             {
+                delete[] arr;
                 throw "failed to create";
             }
         }
@@ -27,6 +28,7 @@ public:
 
         arr = new t[n];
         top = n;
+        py = -1;
     }
 
     array(const array& array_)
@@ -47,6 +49,7 @@ public:
         {
             if (top > array_.top)
             {
+                delete[] arr;
                 throw "error in object declaration";
             }
         }
@@ -79,6 +82,7 @@ public:
         {
             if (n > top)
             {
+                delete[] arr;
                 throw "element is missing";
             }
         }
@@ -148,6 +152,7 @@ public:
         {
             if (n == 0)
             {
+                delete[] arr;
                 throw "failed to create";
             }
         }
@@ -186,6 +191,7 @@ public:
         {
             if (top > array_num_.top)
             {
+                delete[] arr;
                 throw "error in object declaration";
             }
         }
@@ -218,6 +224,7 @@ public:
         {
             if (n > top)
             {
+                delete[] arr;
                 throw "element is missing";
             }
         }
@@ -275,6 +282,7 @@ public:
         {
             if (n > top)
             {
+                delete[] arr;
                 throw "element is missing";
             }
         }
@@ -422,5 +430,137 @@ public:
 template<typename t>
 class array_string
 {
+private:
+    t* arr;
 
+    int top;
+    int py;
+
+    //int value;
+
+public:
+    array_string(int n = 1)
+    {
+        try
+        {
+            if (n == 0)
+            {
+                delete[] arr;
+                throw "failed to create";
+            }
+        }
+        catch (const char* s)
+        {
+            std::cout << s << std::endl;
+            exit(0);
+        }
+
+        arr = new t[n];
+        top = n;
+        py = -1;
+    }
+
+    array_string(const array_string& array_str_)
+    {
+        arr = new t[array_str_.top];
+        top = array_str_.top;
+        py = array_str_.py;
+
+        for (int key = 0; key < top; key++)
+        {
+            arr[key] = array_str_.arr[key];
+        }
+    }
+
+    ~array_string()
+    {
+        delete[] arr;
+    }
+
+    void operator=(const array_string& array_str_)
+    {
+        try
+        {
+            if (top > array_str_.top)
+            {
+                delete[] arr;
+                throw "error in object declaration";
+            }
+        }
+        catch (const char* str)
+        {
+            std::cout << str << std::endl;
+            exit(0);
+        }
+
+        delete[] arr;
+
+        arr = new t[array_str_.top];
+        top = array_str_.top;
+        py = array_str_.py;
+
+        for (int key = 0; key < top; key++)
+        {
+            arr[key] = array_str_.arr[key];
+        }
+    }
+
+    array_string& operator[](int n)
+    {
+        try
+        {
+            if (n > top)
+            {
+                delete[] arr;
+                throw "element is missing";
+            }
+        }
+        catch (const char* s)
+        {
+            std::cout << s << std::endl;
+            exit(0);
+        }
+
+        py = n;
+
+        return *this;
+    }
+
+    void operator=(t val)
+    {
+        arr[py] = val;
+        py = -1; // output
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const array_string& array_str_)
+    {
+        if (array_str_.py != -1)
+        {
+            std::cout << "t";
+            os << array_str_.arr[array_str_.py];
+        }
+        else
+        {
+            for (int key = 0; key < array_str_.top; key++)
+            {
+                if (key < array_str_.top && key != array_str_.top - 1)
+                {
+                    std::cout << array_str_.arr[key] << std::endl;
+                }
+                else if (key = array_str_.top - 1)
+                {
+                    std::cout << array_str_.arr[key];
+                }
+            }
+        }
+        
+        return os;
+    }
+
+    friend std::istream& operator>>(std::istream& is, const array_string& array_str_)
+    {
+        is >> array_str_.arr[array_str_.py];
+
+        return is;
+    }
 };
