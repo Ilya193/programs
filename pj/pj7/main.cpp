@@ -39,7 +39,7 @@ public:
         delete[] arr1;
     }
 
-    void push_back(t number)
+    void append(t number)
     {
         arr2 = new t[top + 1];
 
@@ -67,7 +67,7 @@ int main()
 {
     test_array<double> ta(3);
 
-    ta.push_back(5.28);
+    ta.append(5.28);
 
     return 0;
 }
