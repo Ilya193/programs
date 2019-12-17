@@ -37,7 +37,6 @@ public:
     ~test_array()
     {
         delete[] arr1;
-        delete[] arr2;
     }
 
     void push_back(t number)
@@ -59,6 +58,8 @@ public:
         {
             arr1[key] = arr2[key];
         }
+        
+        delete[] arr2;
     }
 };
 
