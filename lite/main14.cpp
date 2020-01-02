@@ -1,4 +1,4 @@
-#include "dft.h"
+#include <iostream>
 
 void find(const char* str, char ch, int* n, int& count)
 {
