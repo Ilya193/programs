@@ -107,6 +107,54 @@ public:
         return os;
     }
 
+    friend t addition(array_number<t, value>& a1, array_number<t, value>& a2)
+    {
+        t temp_add = 0;
+
+        for (int key = 0; key < a1.count; key++)
+        {
+            temp_add += a1.arr[key] + a2.arr[key];
+        }
+
+        return temp_add;
+    }
+
+    friend t subtraction(array_number<t, value>& a1, array_number<t, value>& a2)
+    {
+        t temp_sub = 0;
+
+        for (int key = 0; key < a1.count; key++)
+        {
+            temp_sub += a1.arr[key] - a2.arr[key];
+        }
+
+        return temp_sub;
+    }
+
+    friend t multiplication(array_number<t, value>& a1, array_number<t, value>& a2)
+    {
+        t temp_mul = 0;
+
+        for (int key = 0; key < a1.count; key++)
+        {
+            temp_mul += a1.arr[key] * a2.arr[key];
+        }
+
+        return temp_mul;
+    }
+
+    friend t division(array_number<t, value>& a1, array_number<t, value>& a2)
+    {
+        t temp_div = 0;
+
+        for (int key = 0; key < a1.count; key++)
+        {
+            temp_div += a1.arr[key] / a2.arr[key];
+        }
+
+        return temp_div;
+    }
+
     array_number operator+(array_number& an)
     {
         array_number<t, value> temp;
