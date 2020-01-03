@@ -22,14 +22,48 @@ void find(std::string str, char ch, int* n, int& count)
     }
 }
 
+bool palindrome(const char* str)
+{
+    for (int x = 0, y = strlen(str) - 1; str[x] != '\0'; x++, y--)
+    {
+        if (str[x] == str[y])
+        {
+            continue;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+bool palindrome(std::string str)
+{
+    for (int x = 0, y = str.size() - 1; x <= y; x++, y--)
+    {
+        if (str[x] == str[y])
+        {
+            continue;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
 int main()
 {
     std::string s = "h%dgl%";
-    char ch = '%';
     int numbers[5];
     int count = 0;
 
-    find(s, ch, numbers, count);
+    find(s, '%', numbers, count);
+    std::cout << palindrome(s) << std::endl;
 
     return 0;
 }
