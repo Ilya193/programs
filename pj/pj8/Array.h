@@ -390,8 +390,8 @@ class array<t&>
 {
 private:
     t* arr;
-    //t arr_s;
     int value;
+    int main_val;
 
     //private methods
     void show() const
@@ -408,20 +408,57 @@ private:
             }
         }
     }
-
 public:
     array(int n)
     {
+        try
+        {
+            if (n == 0)
+            {
+                throw "error";
+            }
+        }
+        catch (const char* str)
+        {
+            std::cout << str << std::endl;
+            exit(0);
+        }
+
         arr = new t[n];
         value = n;
+        main_val = n;
 
         for (int key = 0; key < value; key++)
         {
             arr[key] = 0;
         }
-
-        //arr_s = *arr;
     }
+
+    array()
+    {
+        arr = new t[1];
+        value = 1;
+        main_val = 1;
+
+        for (int key = 0; key < value; key++)
+        {
+            arr[key] = 0;
+        }
+    }
+
+    array(std::initializer_list<t> il)
+    {
+        arr = new t[il.size()];
+        value = il.size();
+        main_val = il.size();
+
+        int c = 0;
+        for (auto a : il)
+        {
+            arr[c++] = a;
+        }
+    }
+
     ~array()
     {
         delete[] arr;
@@ -429,6 +466,20 @@ public:
 
     t& operator[](int n)
     {
+        try
+        {
+            if (n > value - 1)
+            {
+                throw "element is missing";
+            }
+        }
+        catch (const char* str)
+        {
+            delete[] arr;
+            std::cout << str << std::endl;
+            exit(0);
+        }
+
         return arr[n];
     }
 
