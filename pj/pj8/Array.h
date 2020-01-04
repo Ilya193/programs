@@ -1,22 +1,24 @@
 #include <iostream>
 #include <initializer_list>
 
-template <typename t, int value = 1>
-class array_number
+template<typename t>
+class array
 {
 private:
-    t arr[value];
-    int count;
+    t* arr;
+    int value;
+    int main_val;
 
-    void show()
+    //private methods
+    void show() const
     {
-        for (int key = 0; key < count; key++)
+        for (int key = 0; key < value; key++)
         {
-            if (key < count && key != count - 1)
+            if (key < value && key != value - 1)
             {
                 std::cout << arr[key] << std::endl;
             }
-            else if (key == count - 1)
+            else if (key == value - 1)
             {
                 std::cout << arr[key];
             }
@@ -24,94 +26,134 @@ private:
     }
 
 public:
-    array_number(int n)
+    array(int n)
     {
-        count = value;
-
-        for (int key = 0; key < count; key++)
+        try
         {
-            arr[key] = n;
+            if (n == 0)
+            {
+                throw "error";
+            }
         }
-    }
+        catch (const char* str)
+        {
+            std::cout << str << std::endl;
+            exit(0);
+        }
 
-    array_number()
-    {
-        count = value;
+        arr = new t[n];
+        value = n;
+        main_val = n;
 
-        for (int key = 0; key < count; key++)
+        for (int key = 0; key < value; key++)
         {
             arr[key] = 0;
         }
     }
 
-    array_number(const array_number& a)
+    array()
     {
-        count = a.count;
+        arr = new t[1];
+        value = 1;
+        main_val = 1;
 
-        for (int key = 0; key < count; key++)
+        for (int key = 0; key < value; key++)
+        {
+            arr[key] = 0;
+        }
+    }
+
+    array(std::initializer_list<t> il)
+    {
+        arr = new t[il.size()];
+        value = il.size();
+        main_val = il.size();
+
+        int c = 0;
+        for (auto a : il)
+        {
+            arr[c++] = a;
+        }
+    }
+
+    array(const array& a)
+    {
+        value = a.value;
+        main_val = a.main_val;
+        arr = new t[value];
+
+        for (int key = 0; key < value; key++)
         {
             arr[key] = a.arr[key];
         }
     }
 
-    array_number(std::initializer_list<t> il)
+    ~array()
     {
-        count = value;
-
-        if (il.size() == 1)
-        {
-            for (int key = 0; key < count; key++)
-            {
-                const t* n = il.begin();
-                arr[key] = *n;
-            }
-        }
-        else if (count == il.size())
-        {
-            int c = 0;
-            for (auto a : il)
-            {
-                arr[c++] = a;
-            }
-        }
-        else
-        {
-            try
-            {
-                if (count < il.size())
-                {
-                    throw "size > value";
-                }
-                if (count > il.size())
-                {
-                    throw "size < value";
-                }
-            }
-            catch (const char* str)
-            {
-                std::cout << str << std::endl;
-                exit(0);
-            }
-        }
+        delete[] arr;
     }
 
     t& operator[](int n)
     {
+        try
+        {
+            if (n > value - 1)
+            {
+                throw "element is missing";
+            }
+        }
+        catch (const char* str)
+        {
+            delete[] arr;
+            std::cout << str << std::endl;
+            exit(0);
+        }
+
         return arr[n];
     }
 
-    friend std::ostream& operator<<(std::ostream& os, array_number& a)
+    array operator+(array& a)
+    {
+        array<t> temp;
+        temp.value = a.value;
+        temp.main_val = a.main_val;
+        temp.arr = new t[value];
+
+        for (int key = 0; key < value; key++)
+        {
+            temp.arr[key] = arr[key] + a.arr[key];
+        }
+
+        return temp;
+    }
+
+    array operator-(array& a)
+    {
+        array<t> temp;
+        temp.value = a.value;
+        temp.main_val = a.main_val;
+        temp.arr = new t[value];
+
+        for (int key = 0; key < value; key++)
+        {
+            temp.arr[key] = arr[key] - a.arr[key];
+        }
+
+        return temp;
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, array& a)
     {
         a.show();
 
         return os;
     }
 
-    friend t addition(array_number<t, value>& a1, array_number<t, value>& a2)
+    friend t addition(array<t>& a1, array<t>& a2)
     {
         t temp_add = 0;
 
-        for (int key = 0; key < a1.count; key++)
+        for (int key = 0; key < a1.value; key++)
         {
             temp_add += a1.arr[key] + a2.arr[key];
         }
@@ -119,102 +161,92 @@ public:
         return temp_add;
     }
 
-    friend t subtraction(array_number<t, value>& a1, array_number<t, value>& a2)
+    friend t subtraction(array<t>& a1, array<t>& a2)
     {
-        t temp_sub = 0;
+        t temp_add = 0;
 
-        for (int key = 0; key < a1.count; key++)
+        for (int key = 0; key < a1.value; key++)
         {
-            temp_sub += a1.arr[key] - a2.arr[key];
+            temp_add += a1.arr[key] - a2.arr[key];
         }
 
-        return temp_sub;
+        return temp_add;
     }
 
-    friend t multiplication(array_number<t, value>& a1, array_number<t, value>& a2)
+    friend t multiplication(array<t>& a1, array<t>& a2)
     {
-        t temp_mul = 0;
+        t temp_add = 0;
 
-        for (int key = 0; key < a1.count; key++)
+        for (int key = 0; key < a1.value; key++)
         {
-            temp_mul += a1.arr[key] * a2.arr[key];
+            temp_add += a1.arr[key] * a2.arr[key];
         }
 
-        return temp_mul;
+        return temp_add;
     }
 
-    friend t division(array_number<t, value>& a1, array_number<t, value>& a2)
+    friend t division(array<t>& a1, array<t>& a2)
     {
-        t temp_div = 0;
+        t temp_add = 0;
 
-        for (int key = 0; key < a1.count; key++)
+        for (int key = 0; key < a1.value; key++)
         {
-            temp_div += a1.arr[key] / a2.arr[key];
+            temp_add += a1.arr[key] / a2.arr[key];
         }
 
-        return temp_div;
+        return temp_add;
     }
 
-    array_number operator+(array_number& an)
+    void append(int n)
     {
-        array_number<t, value> temp;
-
-        for (int key = 0; key < count; key++)
+        if (value == main_val)
         {
-            temp.arr[key] = arr[key] + an.arr[key];
-        }
+            t* arr_ = new t[main_val + 1];
+            main_val++; value++;
 
-        return temp;
-    }
-
-    array_number operator-(array_number& an)
-    {
-        array_number<t, value> temp;
-
-        for (int key = 0; key < count; key++)
-        {
-            temp.arr[key] = arr[key] - an.arr[key];
-        }
-
-        return temp;
-    }
-
-    void append(t n)
-    {
-        try
-        {
-            if (count == value)
+            for (int key = 0; key < value - 1; key++)
             {
-                throw "arr is full";
+                arr_[key] = arr[key];
             }
-        }
-        catch (const char* str)
-        {
-            std::cout << str << std::endl;
-            exit(0);
-        }
 
-        arr[count++] = n;
+            arr_[value - 1] = n;
+
+            delete[] arr;
+
+            arr = new t[value];
+
+            for (int key = 0; key < value; key++)
+            {
+                arr[key] = arr_[key];
+            }
+
+            delete[] arr_;
+        }
+        else
+        {
+            arr[value++] = n;
+        }
     }
 
-    void del(int n = -1) // -1 flag
+    void del(int n = -1) // -1 - flag
     {
         try
         {
-            if (n > count)
+            if (n > value)
             {
                 throw "element is missing";
             }
         }
         catch (const char* str)
         {
+            delete[] arr;
             std::cout << str << std::endl;
             exit(0);
         }
 
         if (n == -1)
         {
-            arr[count--] = 0;
+            arr[value--] = 0;
         }
         else
         {
@@ -222,27 +254,27 @@ public:
             {
                 if (x == n - 1)
                 {
-                    for (int y = x; x < count; x++)
+                    for (int y = x; x < value; x++)
                     {
                         arr[y] = arr[y + 1];
                     }
                 }
             }
 
-            arr[count--] = 0;
+            arr[value--] = 0;
         }
     }
 
     int size()
     {
-        return count;
+        return value;
     }
 
     void sort()
     {
-        for (int x = 0; x < count; x++)
+        for (int x = 0; x < value; x++)
         {
-            for (int y = 0; y < count; y++)
+            for (int y = 0; y < value; y++)
             {
                 if (arr[x] < arr[y])
                 {
@@ -258,7 +290,7 @@ public:
     {
         t sum = 0;
 
-        for (int key = 0; key < count; key++)
+        for (int key = 0; key < value; key++)
         {
             sum += arr[key];
         }
@@ -270,7 +302,7 @@ public:
     {
         t max = arr[0];
 
-        for (int key = 0; key < count; key++)
+        for (int key = 0; key < value; key++)
         {
             if (arr[key] > max)
             {
@@ -285,7 +317,7 @@ public:
     {
         t min = arr[0];
 
-        for (int key = 0; key < count; key++)
+        for (int key = 0; key < value; key++)
         {
             if (arr[key] < min)
             {
@@ -298,7 +330,7 @@ public:
 
     t average()
     {
-        return sum() / count;
+        return sum() / value;
     }
 };
 
