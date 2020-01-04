@@ -301,3 +301,110 @@ public:
         return sum() / count;
     }
 };
+
+
+
+/*
+template<typename t>
+class array<t*>
+{
+private:
+    t* arr;
+    int value;
+
+    //private methods
+    void show() const
+    {
+        for (int key = 0; key < value; key++)
+        {
+            if (key < value && key != value - 1)
+            {
+                std::cout << arr[key] << std::endl;
+            }
+            else if (key == value - 1)
+            {
+                std::cout << arr[key];
+            }
+        }
+    }
+
+public:
+    array()
+    {
+
+    }
+
+    ~array()
+    {
+        delete[] arr;
+    }
+
+    t* operator[](int n)
+    {
+        return &arr[n];
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, array& a)
+    {
+        a.show();
+
+        return os;
+    }
+};
+
+
+template<typename t>
+class array<t&>
+{
+private:
+    t* arr;
+    //t arr_s;
+    int value;
+
+    //private methods
+    void show() const
+    {
+        for (int key = 0; key < value; key++)
+        {
+            if (key < value && key != value - 1)
+            {
+                std::cout << arr[key] << std::endl;
+            }
+            else if (key == value - 1)
+            {
+                std::cout << arr[key];
+            }
+        }
+    }
+
+public:
+    array(int n)
+    {
+        arr = new t[n];
+        value = n;
+
+        for (int key = 0; key < value; key++)
+        {
+            arr[key] = 0;
+        }
+
+        //arr_s = *arr;
+    }
+    ~array()
+    {
+        delete[] arr;
+    }
+
+    t& operator[](int n)
+    {
+        return arr[n];
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, array& a)
+    {
+        a.show();
+
+        return os;
+    }
+};
+*/
