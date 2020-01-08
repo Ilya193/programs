@@ -289,7 +289,7 @@ public:
         else
         {
             arr[value++] = n;
-            iterator.settings(arr, &arr[value - 1]);
+            iterator.settings(arr, &arr[value]);
         }
     }
 
