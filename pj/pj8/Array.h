@@ -1,6 +1,3 @@
-#include <iostream>
-#include <initializer_list>
-
 template<typename t>
 class array
 {
@@ -9,7 +6,6 @@ private:
     int value;
     int main_val;
 
-    //private methods
     void show() const
     {
         for (int key = 0; key < value; key++)
@@ -24,6 +20,36 @@ private:
             }
         }
     }
+
+    class it
+    {
+    private:
+        t* b;
+        t* e;
+    public:
+        it() : b(nullptr), e(nullptr)
+        {
+
+        }
+
+        void settings(t* a1, t* a2)
+        {
+            b = a1;
+            e = a2;
+        }
+
+        t* begin()
+        {
+            return b;
+        }
+
+        t* end()
+        {
+            return e;
+        }
+    };
+
+    it iterator;
 
 public:
     array(int n)
@@ -49,6 +75,20 @@ public:
         {
             arr[key] = 0;
         }
+
+        iterator.settings(arr, &arr[main_val]);
+    }
+
+    t* begin()
+    {
+        t* b = iterator.begin();
+        return b;
+    }
+
+    t* end()
+    {
+        t* e = iterator.end();
+        return e;
     }
 
     array()
@@ -61,6 +101,8 @@ public:
         {
             arr[key] = 0;
         }
+
+        iterator.settings(arr, &arr[main_val]);
     }
 
     array(std::initializer_list<t> il)
@@ -74,6 +116,8 @@ public:
         {
             arr[c++] = a;
         }
+
+        iterator.settings(arr, &arr[main_val]);
     }
 
     array(const array& a)
@@ -86,6 +130,8 @@ public:
         {
             arr[key] = a.arr[key];
         }
+
+        iterator.settings(arr, &arr[main_val]);
     }
 
     ~array()
@@ -333,161 +379,3 @@ public:
         return sum() / value;
     }
 };
-
-
-
-/*
-template<typename t>
-class array<t*>
-{
-private:
-    t* arr;
-    int value;
-
-    //private methods
-    void show() const
-    {
-        for (int key = 0; key < value; key++)
-        {
-            if (key < value && key != value - 1)
-            {
-                std::cout << arr[key] << std::endl;
-            }
-            else if (key == value - 1)
-            {
-                std::cout << arr[key];
-            }
-        }
-    }
-
-public:
-    array()
-    {
-
-    }
-
-    ~array()
-    {
-        delete[] arr;
-    }
-
-    t* operator[](int n)
-    {
-        return &arr[n];
-    }
-
-    friend std::ostream& operator<<(std::ostream& os, array& a)
-    {
-        a.show();
-
-        return os;
-    }
-};
-
-
-template<typename t>
-class array<t&>
-{
-private:
-    t* arr;
-    int value;
-    int main_val;
-
-    //private methods
-    void show() const
-    {
-        for (int key = 0; key < value; key++)
-        {
-            if (key < value && key != value - 1)
-            {
-                std::cout << arr[key] << std::endl;
-            }
-            else if (key == value - 1)
-            {
-                std::cout << arr[key];
-            }
-        }
-    }
-public:
-    array(int n)
-    {
-        try
-        {
-            if (n == 0)
-            {
-                throw "error";
-            }
-        }
-        catch (const char* str)
-        {
-            std::cout << str << std::endl;
-            exit(0);
-        }
-
-        arr = new t[n];
-        value = n;
-        main_val = n;
-
-        for (int key = 0; key < value; key++)
-        {
-            arr[key] = 0;
-        }
-    }
-
-    array()
-    {
-        arr = new t[1];
-        value = 1;
-        main_val = 1;
-
-        for (int key = 0; key < value; key++)
-        {
-            arr[key] = 0;
-        }
-    }
-
-    array(std::initializer_list<t> il)
-    {
-        arr = new t[il.size()];
-        value = il.size();
-        main_val = il.size();
-
-        int c = 0;
-        for (auto a : il)
-        {
-            arr[c++] = a;
-        }
-    }
-
-    ~array()
-    {
-        delete[] arr;
-    }
-
-    t& operator[](int n)
-    {
-        try
-        {
-            if (n > value - 1)
-            {
-                throw "element is missing";
-            }
-        }
-        catch (const char* str)
-        {
-            delete[] arr;
-            std::cout << str << std::endl;
-            exit(0);
-        }
-
-        return arr[n];
-    }
-
-    friend std::ostream& operator<<(std::ostream& os, array& a)
-    {
-        a.show();
-
-        return os;
-    }
-};
-*/
