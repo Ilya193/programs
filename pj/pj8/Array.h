@@ -38,12 +38,12 @@ private:
             e = a2;
         }
 
-        t* begin()
+        t* begin() const
         {
             return b;
         }
 
-        t* end()
+        t* end() const
         {
             return e;
         }
@@ -52,7 +52,7 @@ private:
     it iterator;
 
 public:
-    array(int n)
+    explicit array(int n)
     {
         try
         {
@@ -76,19 +76,7 @@ public:
             arr[key] = 0;
         }
 
-        iterator.settings(arr, &arr[main_val]);
-    }
-
-    t* begin()
-    {
-        t* b = iterator.begin();
-        return b;
-    }
-
-    t* end()
-    {
-        t* e = iterator.end();
-        return e;
+        iterator.settings(arr, &arr[value]);
     }
 
     array()
@@ -102,7 +90,7 @@ public:
             arr[key] = 0;
         }
 
-        iterator.settings(arr, &arr[main_val]);
+        iterator.settings(arr, &arr[value]);
     }
 
     array(std::initializer_list<t> il)
@@ -117,7 +105,7 @@ public:
             arr[c++] = a;
         }
 
-        iterator.settings(arr, &arr[main_val]);
+        iterator.settings(arr, &arr[value]);
     }
 
     array(const array& a)
@@ -131,12 +119,40 @@ public:
             arr[key] = a.arr[key];
         }
 
-        iterator.settings(arr, &arr[main_val]);
+        std::cout << a.main_val << std::endl;
+
+        iterator.settings(arr, &arr[value]);
+    }
+
+    void operator=(const array& a)
+    {
+        value = a.value;
+        main_val = a.main_val;
+        arr = new t[value];
+
+        for (int key = 0; key < value; key++)
+        {
+            arr[key] = a.arr[key];
+        }
+
+        iterator.settings(arr, &arr[value]);
     }
 
     ~array()
     {
         delete[] arr;
+    }
+
+    t* begin() const
+    {
+        t* b = iterator.begin();
+        return b;
+    }
+
+    t* end() const
+    {
+        t* e = iterator.end();
+        return e;
     }
 
     t& operator[](int n)
@@ -293,6 +309,7 @@ public:
         if (n == -1)
         {
             arr[value--] = 0;
+            iterator.settings(arr, &arr[value]);
         }
         else
         {
@@ -308,15 +325,16 @@ public:
             }
 
             arr[value--] = 0;
+            iterator.settings(arr, &arr[value]);
         }
     }
 
-    int size()
+    int size() const
     {
         return value;
     }
 
-    void sort()
+    void sort() const
     {
         for (int x = 0; x < value; x++)
         {
@@ -332,7 +350,7 @@ public:
         }
     }
 
-    t sum()
+    t sum() const
     {
         t sum = 0;
 
@@ -344,7 +362,7 @@ public:
         return sum;
     }
 
-    t max()
+    t max() const
     {
         t max = arr[0];
 
@@ -359,7 +377,7 @@ public:
         return max;
     }
 
-    t min()
+    t min() const
     {
         t min = arr[0];
 
@@ -374,7 +392,7 @@ public:
         return min;
     }
 
-    t average()
+    t average() const
     {
         return sum() / value;
     }
