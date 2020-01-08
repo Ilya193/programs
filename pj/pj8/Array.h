@@ -283,10 +283,13 @@ public:
             }
 
             delete[] arr_;
+
+            iterator.settings(arr, &arr[value]);
         }
         else
         {
             arr[value++] = n;
+            iterator.settings(arr, &arr[value - 1]);
         }
     }
 
