@@ -126,6 +126,8 @@ public:
 
     void operator=(const array& a)
     {
+        delete[] arr;
+        
         value = a.value;
         main_val = a.main_val;
         arr = new t[value];
