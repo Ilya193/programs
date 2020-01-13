@@ -73,10 +73,3 @@ public:
 
 template <typename t>
 int pointer_<t>::count = 0;
-
-int main()
-{
-    
-    
-    return 0;
-}
