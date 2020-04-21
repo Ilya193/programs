@@ -31,7 +31,7 @@ int f(int m)
     {
         if (x != 1 && x != m && m % x == 0)
         {
-            j = 10;
+            j = 10; // flag
             break;
         }
     }
