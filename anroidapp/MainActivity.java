@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             end = end + ch;
         }
 
-        if (count_sign > 3)
+        if (count_sign > 3 || count_sign < 2)
             z = 0;
 
         if (z == 1)
