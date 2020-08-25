@@ -2,7 +2,7 @@
 
 int main()
 {
-    int* numbers = new int[30];
+    int* numbers = new int[30]; // зависит от задания
     numbers[1] = 1; // зависит от задания
     int res;
 
