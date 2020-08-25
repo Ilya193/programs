@@ -11,7 +11,7 @@ int main()
     {
         if (i % 2 == 0)
         {
-            res = 2 + numbers[i - 1];
+            res = n + numbers[i - 1];
             numbers[i] = res;
         }
         else if (i % 2 != 0)
