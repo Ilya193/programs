@@ -45,11 +45,6 @@ int main()
         max = array[index - 1];
     }
     
-    /*if (sum != ob)
-    {
-        sum -= array[index - (index)];
-    }*/
-    
     index = 0;
     while (sum > ob)
         sum -= array[index++];
