@@ -11,7 +11,7 @@ int max(int n1, int n2)
 
 int main()
 {
-    std::string main_str;
+    /*std::string main_str;
     std::ifstream file("24.txt");
     int main_count = 0, count = 0;
     
@@ -32,7 +32,30 @@ int main()
     
     std::cout << main_count << std::endl;
 
-    file.close();
+    file.close();*/
+    
+    /*std::string main_str;
+    std::ifstream file("24.txt");
+    int main_count = 0, count = 0;
+    
+    getline(file, main_str);
+    
+    for (int i = 0; i < main_str.length(); i++)
+    {
+        if ((main_str[i] == 'X' && count % 3 == 0) || (main_str[i] == 'Y' && count % 3 == 1) || (main_str[i] == 'Z' && count % 3 == 2))
+        {
+            count++;
+        }
+        else
+        {
+            main_count = max(main_count, count);
+            count = 0;
+        }
+    }
+    
+    std::cout << main_count << std::endl;
+
+    file.close();*/
     
     return 0;
 }
