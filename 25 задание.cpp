@@ -1,6 +1,6 @@
 #include <iostream>
 
-void f(int i)
+void f1(int i)
 {
     int count = 0;
     
@@ -28,11 +28,42 @@ void f(int i)
     std::cout << std::endl;
 }
 
+void f2(int i, int count)
+{
+    int z = 0, a = 0;
+
+    for (int x = 2; x < i; x++)
+    {
+        if (i % x != 0)
+        {
+            z++;
+        }
+        if (i % x == 0)
+        {
+            a++;
+        }
+    }
+
+    if (z > 0 && a == 0)
+    {
+        std::cout << count << " " << i << std::endl;
+    }
+}
+
 int main()
 {
-    for (int i = 210235; i <= 210300; i++)
+    // делители
+    for (int i = 0; i <= 0; i++)
     {
-        f(i);
+        f1(i);
+    }
+    
+    //простые числа
+    int count = 1;
+    for (int i = 0; i <= 0; i++)
+    {
+        f2(i, count);
+        count++;
     }
     
     return 0;
