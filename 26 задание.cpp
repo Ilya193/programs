@@ -18,15 +18,15 @@ void sort(int* arr, int value)
 }
 
 int main() {
-    std::ifstream file("27880.txt");
+    std::ifstream file(".txt"); ///
 
     std::string str;
-    int numbers[2324] = {};
+    int numbers[] = {}; ///
     int c = 0;
 
     while (getline(file, str))
     {
-        if (str == "8358 2324")
+        if (str == "") ///
             continue;
 
         numbers[c++] = std::stoi(str);
@@ -36,7 +36,7 @@ int main() {
 
     int sum = 0, index = 0, sum2 = 0, count = 0, max = 0, i;
 
-    while (sum + numbers[index] <= 8358)
+    while (sum + numbers[index] <= ) ///
     {
         count++;
         sum += numbers[index];
@@ -50,7 +50,7 @@ int main() {
 
     for (int k = index; k < c; k++)
     {
-        if (sum2 + numbers[k] <= 8358)
+        if (sum2 + numbers[k] <= ) ///
             max = numbers[k];
     }
 
