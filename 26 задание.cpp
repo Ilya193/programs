@@ -44,8 +44,6 @@ int main() {
         index++;
     }
 
-    // ЕСЛИ НЕ БУДЕТ НАЙДЕНО ДРУГОГО ФАЙЛА
-
     sum2 = sum - i;
 
     for (int k = index; k < c; k++)
