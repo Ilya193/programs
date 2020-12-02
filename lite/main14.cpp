@@ -1,6 +1,38 @@
 #include <iostream>
 #include <cstring>
 
+std::string split1(std::string& s, const char ch)
+{
+    std::string temp;
+
+    for (int k = 0; s[k] != ch; k++)
+    {
+        temp += s[k];
+    }
+
+    return temp;
+}
+
+std::string split2(std::string& s)
+{
+    std::string temp;
+
+    for (int k = 0; k < s.size(); k++)
+    {
+        if (s[k] == ' ')
+        {
+            for (int i = k; i < s.size(); i++)
+            {
+                temp += s[i];
+            }
+
+            break;
+        }
+    }
+
+    return temp;
+}
+
 void find(const char* str, char ch, int* n, int& count)
 {
     for (int key = 0; str[key] != '\0'; key++)
