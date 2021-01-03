@@ -5,7 +5,7 @@
 
 int main()
 {
-    std::ifstream file("C:/code/26/26-20.txt");
+    std::ifstream file(""); //
     int s, n, summ = 0;
 
     file >> s >> n;
