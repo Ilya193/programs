@@ -1,58 +1,35 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include <algorithm>
 
-void sort(int* arr, int value)
+int main()
 {
-    for (int x = 0; x < value; x++)
+    std::ifstream file("C:/code/26/26-20.txt");
+    int s, n, summ = 0;
+
+    file >> s >> n;
+    std::vector <int> num(n);
+
+    for (int i = 0; i < n; i++)
     {
-        for (int y = 0; y < value; y++)
-        {
-            if (arr[x] < arr[y])
-            {
-                int temp = arr[y];
-                arr[y] = arr[x];
-                arr[x] = temp;
-            }
-        }
-    }
-}
-
-int main() {
-    std::ifstream file(".txt"); ///
-
-    std::string str;
-    int numbers[] = {}; ///
-    int c = 0;
-
-    while (getline(file, str))
-    {
-        if (str == "") ///
-            continue;
-
-        numbers[c++] = std::stoi(str);
+        file >> num[i];
     }
 
-    sort(numbers, c);
+    sort(num.begin(), num.end());
 
-    int sum = 0, index = 0, sum2 = 0, count = 0, max = 0, i;
-
-    while (sum + numbers[index] <= ) ///
-    {
-        count++;
-        sum += numbers[index];
-        i = numbers[index];
-        index++;
+    int ind, max_s = 0;
+    for (ind = 0; ind < n; ind++) {
+        if (num[ind] + summ > s) break;
+        summ += num[ind];
     }
 
-    sum2 = sum - i;
+    summ -= num[ind];
 
-    for (int k = index; k < c; k++)
-    {
-        if (sum2 + numbers[k] <= ) ///
-            max = numbers[k];
-    }
+    for (int i = ind + 1; i < n; i++)
+        if (summ + num[i] <= s) max_s = num[i];
 
-    std::cout << count << " " << max << std::endl;
+    std::cout << ind << " " << max_s << std::endl;
 
     return 0;
 }
