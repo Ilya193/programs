@@ -1,4 +1,7 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
 
 void f1(int i)
 {
@@ -52,6 +55,46 @@ void f2(int i, int count)
 
 int main()
 {
+    //скорость
+    std::vector <int> n;
+    for (int i = 185311; i <= 185330; i++)
+    {
+        if (int(sqrt(i)) == sqrt(i))
+        {
+            for (int j = 1; j <= int(sqrt(i)); j++)
+                if (i % j == 0)
+                {
+                    n.push_back(j);
+                    n.push_back(int(i) / j);
+                }
+
+            sort(n.begin(), n.end());
+
+            if (n.size() == 4)
+                for (int x = 0; x < n.size(); x++)
+                    std::cout << n[x] << std::endl;
+
+            n.clear();
+        }
+        else
+        {
+            for (int j = 1; j <= int(sqrt(i)); j++)
+                if (i % j == 0)
+                {
+                    n.push_back(j);
+                    n.push_back(int(i) / j);
+                }
+
+            sort(n.begin(), n.end());
+
+            if (n.size() == 4)
+                for (int x = 0; x < n.size(); x++)
+                    std::cout << n[x] << std::endl;
+
+            n.clear();
+        }
+    }
+    
     // делители
     for (int i = 0; i <= 0; i++)
     {
