@@ -57,7 +57,7 @@ int main()
 {
     //скорость
     std::vector <int> n;
-    for (int i = 185311; i <= 185330; i++) //
+    for (int i = 94; i <= 94; i++) //
     {
         if (int(sqrt(i)) == sqrt(i))
         {
@@ -65,14 +65,14 @@ int main()
                 if (i % j == 0)
                 {
                     n.push_back(j);
-                    n.push_back(int(i) / j);
+                    if (j != sqrt(i))
+                        n.push_back(int(i) / j);
                 }
 
             sort(n.begin(), n.end());
 
-            if (n.size() == 4) //
-                for (int x = 0; x < n.size(); x++)
-                    std::cout << n[x] << std::endl;
+            for (int x = 0; x < n.size(); x++)
+                std::cout << n[x] << std::endl;
 
             n.clear();
         }
@@ -87,9 +87,8 @@ int main()
 
             sort(n.begin(), n.end());
 
-            if (n.size() == 4) //
-                for (int x = 0; x < n.size(); x++)
-                    std::cout << n[x] << std::endl;
+            for (int x = 0; x < n.size(); x++)
+                std::cout << n[x] << std::endl;
 
             n.clear();
         }
