@@ -57,41 +57,27 @@ int main()
 {
     //скорость
     std::vector <int> n;
-    for (int i = 94; i <= 94; i++) //
+    for (int i = 194455; i <= 194500; i++) //
     {
-        if (int(sqrt(i)) == sqrt(i))
-        {
-            for (int j = 1; j <= int(sqrt(i)); j++) //
-                if (i % j == 0)
-                {
-                    n.push_back(j);
-                    if (j != sqrt(i))
-                        n.push_back(int(i) / j);
-                }
-
-            sort(n.begin(), n.end());
-
-            for (int x = 0; x < n.size(); x++)
-                std::cout << n[x] << std::endl;
-
-            n.clear();
-        }
-        else
-        {
-            for (int j = 1; j <= int(sqrt(i)); j++) //
-                if (i % j == 0)
-                {
-                    n.push_back(j);
+        for (int j = 1; j <= sqrt(i); j++) //
+            if (i % j == 0)
+            {
+                n.push_back(j);
+                if (j != sqrt(i))
                     n.push_back(int(i) / j);
-                }
+            }
 
-            sort(n.begin(), n.end());
-
+        sort(n.begin(), n.end());
+        
+        if (n.size() == 4)
+        {
             for (int x = 0; x < n.size(); x++)
-                std::cout << n[x] << std::endl;
-
-            n.clear();
+                std::cout << n[x] << " ";
+            
+            std::cout << std::endl;
         }
+
+        n.clear();
     }
     
     // делители
